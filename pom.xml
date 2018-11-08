@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2016 Red Hat, Inc. and/or its affiliates.
+  ~
+  ~ Licensed under the Apache License version 2.0, available at http://www.apache.org/licenses/LICENSE-2.0
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.thorntail</groupId>
+    <artifactId>parent</artifactId>
+    <version>10</version>
+  </parent>
+
+  <groupId>org.teiid</groupId>
+  <artifactId>teiid-thorntail</artifactId>
+  <version>2.3.0.Final-SNAPSHOT</version>
+
+  <name>Root</name>
+  <description>Root</description>
+
+  <packaging>pom</packaging>
+
+  <scm>
+    <connection>scm:git:git@github.com:teiid/teiid-thorntail.git</connection>
+    <developerConnection>scm:git:git@github.com:teiid/teiid-thorntail.git</developerConnection>
+    <url>https://github.com/teiid/teiid-thorntail</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+  	<version.thorntail>2.3.0.Final-SNAPSHOT</version.thorntail>
+  	
+    <version.wildfly.swarm.checkstyle>3</version.wildfly.swarm.checkstyle>
+
+    <version.certified-community>2.0.0.Final</version.certified-community>
+    <version.wildfly.swarm>${project.version}</version.wildfly.swarm>
+
+    <version.org.arquillian>1.1.15.Final</version.org.arquillian>
+    <version.org.jboss.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap>
+    <version.org.jboss.shrinkwrap.descriptors>2.0.0</version.org.jboss.shrinkwrap.descriptors>
+    <version.fest-assert>1.4</version.fest-assert>
+    <version.junit>4.12</version.junit>
+    <version.mockito>2.2.28</version.mockito>
+
+    <!-- OpenTracing related versions. Needed at this level because it's used by testsuite -->
+    <version.opentracing>0.31.0</version.opentracing>
+
+    <!-- NoSQL related versions.  Needed at this level because it's used by testsuite -->
+    <version.mongodb.driver>3.2.2</version.mongodb.driver>
+    <version.cassandra.driver>3.0.0</version.cassandra.driver>
+    <version.neo4j.driver>1.2.1</version.neo4j.driver>
+    <version.com.orientechnologies>2.2.9</version.com.orientechnologies>
+    <version.com.googlecode.concurrentlinkedhashmap>1.4.1</version.com.googlecode.concurrentlinkedhashmap>
+    <version.com.tinkerpop.blueprints>2.6.0</version.com.tinkerpop.blueprints>
+
+    <version.jruby-maven-plugin>1.1.3</version.jruby-maven-plugin>
+    <version.maven-plugin-plugin>3.5</version.maven-plugin-plugin>
+    <version.maven-shade-plugin>2.4.1</version.maven-shade-plugin>
+    <version.build-helper-maven-plugin>1.9.1</version.build-helper-maven-plugin>
+    <version.keytool-maven-plugin>1.5</version.keytool-maven-plugin>
+    <version.maven.plugin.api>3.2.5</version.maven.plugin.api>
+    <version.xml-maven-plugin>1.0.1</version.xml-maven-plugin>
+    <version.license-maven-plugin>1.13</version.license-maven-plugin>
+    <version.wildfly-licenses-plugin>1.0.1</version.wildfly-licenses-plugin>
+
+    <version.checkstyle>7.4</version.checkstyle>
+
+    <maven.min.version>3.2.1</maven.min.version>
+
+    <m2repo.include.pattern>**/*</m2repo.include.pattern>
+
+    <!-- Surefire args -->
+    <surefire.jpda.args />
+    <surefire.system.args>-da ${surefire.jpda.args}</surefire.system.args>
+    <testCategory.excluded>category.CommunityOnly</testCategory.excluded>
+
+    <!-- Checkstyle configuration -->
+    <linkXRef>false</linkXRef>
+
+    <!-- maven-compiler-plugin -->
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <excludedGroups>${testCategory.excluded}</excludedGroups>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <forkCount>1</forkCount>
+          <reuseForks>false</reuseForks>
+          <runOrder>alphabetical</runOrder>
+          <failIfNoTests>false</failIfNoTests>
+          <excludedGroups>${testCategory.excluded}</excludedGroups>
+          <systemPropertyVariables>
+            <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
+            <thorntail.bind.address>127.0.0.1</thorntail.bind.address>
+            <project.version>${project.version}</project.version>
+            <org.apache.maven.user-settings>${session.request.userSettingsFile.path}</org.apache.maven.user-settings>
+          </systemPropertyVariables>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>build-resources</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>add-test-source</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/it/java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${version.checkstyle.plugin}</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${version.checkstyle}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>checkstyle-config</artifactId>
+            <version>${version.wildfly.swarm.checkstyle}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <configuration>
+              <configLocation>checkstyle/checkstyle.xml</configLocation>
+              <encoding>UTF-8</encoding>
+              <consoleOutput>true</consoleOutput>
+            </configuration>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>de.saumya.mojo</groupId>
+          <artifactId>jruby-maven-plugin</artifactId>
+          <version>${version.jruby-maven-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>${version.maven-plugin-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>${version.maven-shade-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${version.build-helper-maven-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>keytool-maven-plugin</artifactId>
+          <version>${version.keytool-maven-plugin}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <configuration>
+            <failOnError>false</failOnError>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-assert</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>${version.org.arquillian}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.easytesting</groupId>
+        <artifactId>fest-assert</artifactId>
+        <version>${version.fest-assert}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${version.mockito}</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${version.junit}</version>
+      </dependency>
+
+      <!-- Project Artifacts -->
+      <dependency>
+        <groupId>io.thorntail</groupId>
+        <artifactId>build-parent</artifactId>
+        <version>${version.thorntail}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <repository>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <modules>
+    <module>fractions</module>
+  </modules>
+
+  <profiles>
+    <profile>
+      <id>swarm.debug</id>
+      <activation>
+        <property>
+          <name>thorntail.debug</name>
+        </property>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <configuration>
+                <systemPropertyVariables>
+                  <thorntail.debug.port>8787</thorntail.debug.port>
+                </systemPropertyVariables>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+  </profiles>
+</project>
