@@ -1,0 +1,197 @@
+
+http://localhost:8080/odata4/Portfolio.1/Accounts/CUSTOMER
+
+= Summary
+
+This example demonstrates:
+
+* How to define a vdb and transfer data from a relational database. Please note other data source types are also possible
+* How to use Thorntail to configure VDB, configure data sources and run Teiid as a Thorntail uber jar.
+* Shows how access OData interface running Teiid with Thorntail.
+
+= Building the Example
+The following sections define steps to code and run the example.
+
+== Data Source Setup
+IMPORTANT: While you can run and interact with this example on our local host, it requires that you also have a database installed and configured. This example shows an example where a MySQL docker instance is created and populated with some test data. If you are working with your own database (or any other source) skip this step.
+
+=== Start a MySQL Server Instance
+Starting a MySQL instance is simple, run the following commands. Note, the commands are written for *unix environments.
+----
+$sudo docker pull mysql
+$sudo docker run --name accounts -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql
+----
+
+where `accounts` is the name you want to assign to your container, my-secret-pw is the password to be set for the MySQL root user and expose the port 3306 on to your localhost. To populate with some test data run the following command
+
+----
+docker exec -i accounts mysql -uroot -pmy-secret-pw < sql/customer-schema.sql
+----
+
+
+== Project Setup
+
+IMPORTANT: This example requires Java 8 JDK or greater and Maven 3.3.x.
+
+The project is a maven project with `vdb` packaging. This is special packaging developed for Teiid based VDB. The `pom.xml` is the key file for building a Thorntail based application. To enable `vdb` packing you need to add following to your pom.xml 
+
+[source,xml]
+----
+<packaging>vdb</packaging>
+
+<build>
+	<plugins>
+      <plugin>
+        <groupId>org.teiid</groupId>
+        <artifactId>vdb-maven-plugin</artifactId>
+        <version>1.1</version>
+		... see more in pom.xml file		
+      </plugin>	
+	</plugins>
+</build>
+----
+
+This project also requires the `thorntail-maven-plugin` to build a uber jar with `-thorntail.jar` extension, for that add the following
+
+----
+<build>
+	<plugins>
+      <plugin>
+        <groupId>io.thorntail</groupId>
+        <artifactId>thorntail-maven-plugin</artifactId>
+        <version>${version.thorntail}</version>
+		... see more in pom.xml file	
+      </plugin>	
+	</plugins>
+</build>
+---- 
+
+This project depends on following dependencies
+
+----
+<!-- This adds dependency on Teiid Fraction in Thorntail -->
+<dependency>
+  <groupId>io.thorntail</groupId>
+  <artifactId>teiid</artifactId>
+</dependency>
+
+<!-- This adds dependency for Teiid's JDBC translator -->
+<dependency>
+  <groupId>io.thorntail</groupId>
+  <artifactId>teiid-jdbc</artifactId>
+</dependency>
+----
+
+Since we are using the MySQL database, we would need to add dependency on MySQL JDBC driver by adding the following
+
+----
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>${mysql.version}</version>
+</dependency>
+----
+
+if you want your Teiid instance to expose OData API, then add the following dependency
+
+----
+<dependency>
+  <groupId>io.thorntail</groupId>
+  <artifactId>odata</artifactId>
+</dependency> 
+----
+
+That completes the defining the `pom.xml`, now we need to define the VDB. 
+
+== VDB Setup
+
+Thorntail based Teiid currently only supports XML/DDL based VDBS with -vdb.xml extension. Develop your VDB completely using Desginer perhaps or simply using a text editor, once done place the VDB file in `src/main/vdb` folder.  
+
+== Data Source Configuration
+Data Source configuration is defined by Thorntail. You can see more information about this at http://docs.wildfly-swarm.io/2.0.0.Final/#configuring-a-datasource
+
+This example provides a sample data configuration file in `src/main/resources` directory with name `project-local.yml` with content 
+
+----
+swarm:
+  datasources:
+    data-sources:
+      accountsDS:
+        driver-name: mysql
+        connection-url: jdbc:mysql://localhost:3306/ACCOUNTS
+        user-name: root
+        password: my-secret-pw
+----
+
+where the above username and password and URL is built for the MySQL docker instance created above.
+
+IMPORTANT: "accountDS" tag in above YML fragment is what defines the JNDI name that you can use on the VDB's "connection-jndi-name" attribute name in your <model> fragment. When this data configuration is run on Thorntail a datasource is created with JNDI name resolves to `java:jboss/datasources/accountsDS`. Make sure your names in here match with that of what you defined in the VDB.  
+
+Now development/configuration is done.
+
+== Build and Run the project
+
+you can build the project by issuing the following the command
+
+----
+mvn clean package
+---- 
+
+this should build the project and if everything went well then it will create a  jar file with `-thorntail.jar` file in the `target` directory. You can run the application by running
+
+----
+java -jar target/rdbms-as-datasource-1.0.0-thorntail.jar -S local 
+----  
+
+IMPORTANT: `-S local` at the end of command is denoting which configuration file to choose for configuration when application is ran. `-S local` chooses `project-local.yml` file. You can also have say `-S production` to choose a separate file `project-production.yml` file. You can also have multiple configurations, see Thorntail documentation on configuration resolution.
+
+== Query Demonstrations
+
+Now you can use any SQL client tools like SQuirreL or your own Java application and use Teiid JDBC driver and connect to the `Portrfolio` VDB and issue commands like (see simpleclient project for sample java code for client)
+
+----
+select SSN, FirstName, LasNname from Customer;
+----
+
+and see results as
+----
+CST01002	Joseph	Smith
+CST01003	Nicholas	Ferguson
+CST01004	Jane	Aire
+CST01005	Charles	Jones
+CST01006	Virginia	Jefferson
+CST01007	Ralph	Bacon
+----
+
+If you enabled the OData, then you can use your browser and visit
+
+----
+http://localhost:8080/odata4/Portfolio.1/Accounts/CUSTOMER?$format=json
+----
+
+You will see results like
+
+----
+[{  
+  "SSN":"CST01002",
+  "FIRSTNAME":"Joseph",
+  "LASTNAME":"Smith",
+  "ST_ADDRESS":"1234 Main Street",
+  "APT_NUMBER":"Apartment 56",
+  "CITY":"New York",
+  "STATE":"New York",
+  "ZIPCODE":"10174",
+  "PHONE":"(646)555-1776"
+},
+{  
+  "SSN":"CST01003",
+  "FIRSTNAME":"Nicholas",
+  "LASTNAME":"Ferguson",
+  "ST_ADDRESS":"202 Palomino Drive",
+  "APT_NUMBER":null,
+  "CITY":"Pittsburgh",
+  "STATE":"Pennsylvania",
+  "ZIPCODE":"15071",
+  "PHONE":"(412)555-4327"
+}]
+----

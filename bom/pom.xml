@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ Copyright 2015 Red Hat, Inc. and/or its affiliates. ~ ~ Licensed under 
+	the Apache License version 2.0, available at http://www.apache.org/licenses/LICENSE-2.0 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.teiid</groupId>
+		<artifactId>teiid-thorntail</artifactId>
+		<version>2.3.0.Final-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<artifactId>thorntail-bom</artifactId>
+
+	<name>BOM</name>
+	<description>BOM</description>
+
+	<packaging>pom</packaging>
+	<url>http://teiid.io/</url>
+
+	<developers>
+		<developer>
+			<id>teiid.io</id>
+			<name>Teiid Community</name>
+			<organization>Teiid Thorntail</organization>
+			<organizationUrl>http://teiid.io/</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git@github.com:teiid/teiid-thorntail.git</connection>
+		<developerConnection>scm:git:git@github.com:teiid/teiid-thorntail.git</developerConnection>
+		<url>https://github.com/teiid/teiid-thorntail</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>AL2</name>
+		</license>
+	</licenses>
+
+
+	<properties>
+	    <!-- TODO: fix me please. This should be dynamically driven -->
+		<throntail-teiid-version>2.3.0.Final-SNAPSHOT</throntail-teiid-version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.thorntail</groupId>
+				<artifactId>bom-all</artifactId>
+				<version>${version.thorntail}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>		
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-amazon-s3</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-salesforce-34</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-salesforce-41</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-ftp</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-excel</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-jdbc</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-odata-v2</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>v-odata-v4</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-cassandra</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-olap</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-solr</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-file</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-salesforce</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-teiid-runtime</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-ws</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-infinispan-hotrod</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-couchbase</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-loopback</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-mongodb</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-simpledb</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-accumulo</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-swagger</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-ldap</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-google</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>throntail-odata-api</artifactId>
+				<version>${throntail-teiid-version}</version>
+			</dependency>			
+		</dependencies>
+	</dependencyManagement>
+
+</project>

@@ -31,7 +31,7 @@
 
   <properties>
   	<version.thorntail>2.3.0.Final-SNAPSHOT</version.thorntail>
-  	
+  	  	
     <version.wildfly.swarm.checkstyle>3</version.wildfly.swarm.checkstyle>
 
     <version.certified-community>2.0.0.Final</version.certified-community>
@@ -289,6 +289,8 @@
 
   <modules>
     <module>fractions</module>
+    <module>bom</module>
+    <module>examples</module>
   </modules>
 
   <profiles>

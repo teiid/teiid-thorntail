@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.teiid.thorntail</groupId>
+	<artifactId>rdbms-as-datasource</artifactId>
+	<name>Teiid Example showing RDBMS as data source</name>
+	<version>1.0.0</version>
+	<packaging>vdb</packaging>
+	
+	<properties>
+		<version.thorntail>2.3.0.Final-SNAPSHOT</version.thorntail>
+		<mysql.version>5.1.6</mysql.version>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.teiid</groupId>
+				<artifactId>thorntail-bom</artifactId>
+				<version>${version.thorntail}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>io.thorntail</groupId>
+				<artifactId>thorntail-maven-plugin</artifactId>
+				<version>${version.thorntail}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>package</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<arguments>
+						<argument>-S</argument>
+						<argument>local</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.teiid</groupId>
+				<artifactId>vdb-maven-plugin</artifactId>
+				<version>1.2</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<id>build</id>
+						<goals>
+							<goal>vdb</goal>
+						</goals>
+						<configuration>
+							<!-- your configuration here -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.teiid</groupId>
+			<artifactId>thorntail-teiid-runtime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.teiid</groupId>
+			<artifactId>thorntail-jdbc</artifactId>
+		</dependency>
+	</dependencies>
+</project>
