@@ -288,6 +288,7 @@
   </pluginRepositories>
 
   <modules>
+    <module>config-api</module>
     <module>fractions</module>
     <module>bom</module>
     <module>examples</module>
