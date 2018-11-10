@@ -37,6 +37,22 @@ import org.wildfly.swarm.spi.api.DependenciesContainer;
 public class DefaultVDBDeploymentFactory extends DefaultDeploymentFactory {
 
     public static VDBArchive archiveFromCurrentApp() throws Exception {
+
+//        Configuration config = ShrinkWrap.getDefaultDomain().getConfiguration();
+//
+//        ArrayList<ClassLoader> existing = new ArrayList<>();
+//        Iterator<ClassLoader> it = config.getClassLoaders().iterator();
+//        while (it.hasNext()) {
+//            existing.add(it.next());
+//        }
+//        existing.add(VDBArchive.class.getClassLoader());
+//        ConfigurationBuilder builder = new ConfigurationBuilder();
+//        builder.classLoaders(existing);
+//        builder.extensionLoader(new ServiceExtensionLoader(existing));
+//
+//        Domain domain = ShrinkWrap.createDomain(builder);
+//        final VDBArchive archive = domain.getArchiveFactory().create(VDBArchive.class, determineName());
+
         final VDBArchive archive = ShrinkWrap.create(VDBArchive.class, determineName());
         final DefaultDeploymentFactory factory = new DefaultVDBDeploymentFactory();
         factory.setup(archive);

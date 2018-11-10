@@ -14,11 +14,11 @@
   </parent>
 
   <groupId>org.teiid</groupId>
-  <artifactId>teiid-thorntail</artifactId>
-  <version>2.3.0.Final-SNAPSHOT</version>
+  <artifactId>thorntail-teiid-parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
 
-  <name>Root</name>
-  <description>Root</description>
+  <name>Teiid Thorntail Parent</name>
+  <description>Teiid Thorntail Parent</description>
 
   <packaging>pom</packaging>
 
@@ -30,7 +30,7 @@
   </scm>
 
   <properties>
-  	<version.thorntail>2.3.0.Final-SNAPSHOT</version.thorntail>
+  	<version.thorntail>2.2.0.Final</version.thorntail>
   	  	
     <version.wildfly.swarm.checkstyle>3</version.wildfly.swarm.checkstyle>
 
@@ -109,13 +109,6 @@
             <org.apache.maven.user-settings>${session.request.userSettingsFile.path}</org.apache.maven.user-settings>
           </systemPropertyVariables>
         </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>io.thorntail</groupId>
-            <artifactId>build-resources</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -248,13 +241,6 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${version.junit}</version>
-      </dependency>
-
-      <!-- Project Artifacts -->
-      <dependency>
-        <groupId>io.thorntail</groupId>
-        <artifactId>build-parent</artifactId>
-        <version>${version.thorntail}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
