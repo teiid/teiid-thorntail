@@ -185,9 +185,9 @@
       </dependency>
 
       <dependency>
-        <groupId>io.thorntail</groupId>
-        <artifactId>teiid-config-api</artifactId>
-        <version>${version.teiid.config-api}</version>
+        <groupId>org.teiid</groupId>
+        <artifactId>thorntail-config-api</artifactId>
+        <version>${project.version}</version>
       </dependency>
 
     </dependencies>

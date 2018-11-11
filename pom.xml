@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright 2016 Red Hat, Inc. and/or its affiliates.
-  ~
-  ~ Licensed under the Apache License version 2.0, available at http://www.apache.org/licenses/LICENSE-2.0
-  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!-- ~ Copyright 2016 Red Hat, Inc. and/or its affiliates. ~ ~ Licensed under 
+  the Apache License version 2.0, available at http://www.apache.org/licenses/LICENSE-2.0 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -30,14 +28,14 @@
   </scm>
 
   <properties>
-  	<version.thorntail>2.2.0.Final</version.thorntail>
-    <version.teiid.config-api>1.2.0.Final</version.teiid.config-api>
-    <version.teiid>10.2.0</version.teiid>
+    <version.thorntail>2.2.0.Final</version.thorntail>
+    <version.teiid>11.2.0</version.teiid>
     <version.org.wildfly.core>3.0.8.Final</version.org.wildfly.core>
     <version.wildfly>11.0.0.Final</version.wildfly>
     <version.thorntail.fraction.plugin>88</version.thorntail.fraction.plugin>
-    
-  	  	
+    <config-api.version>1.4.0</config-api.version> <!-- look at any other  config-api pom version -->
+    <version.org.wildfly.plugins.maven>1.0.2.Final</version.org.wildfly.plugins.maven>
+
     <version.wildfly.swarm.checkstyle>3</version.wildfly.swarm.checkstyle>
     <version.certified-community>2.0.0.Final</version.certified-community>
     <version.wildfly.swarm>${project.version}</version.wildfly.swarm>
@@ -49,10 +47,12 @@
     <version.junit>4.12</version.junit>
     <version.mockito>2.2.28</version.mockito>
 
-    <!-- OpenTracing related versions. Needed at this level because it's used by testsuite -->
+    <!-- OpenTracing related versions. Needed at this level because it's 
+      used by testsuite -->
     <version.opentracing>0.31.0</version.opentracing>
 
-    <!-- NoSQL related versions.  Needed at this level because it's used by testsuite -->
+    <!-- NoSQL related versions. Needed at this level because it's used by 
+      testsuite -->
     <version.mongodb.driver>3.2.2</version.mongodb.driver>
     <version.cassandra.driver>3.0.0</version.cassandra.driver>
     <version.neo4j.driver>1.2.1</version.neo4j.driver>
@@ -245,6 +245,11 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${version.junit}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.teiid</groupId>
+        <artifactId>thorntail-config-api</artifactId>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
