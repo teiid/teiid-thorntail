@@ -79,7 +79,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.teiid</groupId>
-			<artifactId>thorntail-teiid-runtime</artifactId>
+			<artifactId>thorntail-runtime</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.teiid</groupId>

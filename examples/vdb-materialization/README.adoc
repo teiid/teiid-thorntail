@@ -1,0 +1,108 @@
+= Summary
+
+> Please raise any issues found with this example in our JIRA: 
+> https://issues.jboss.org/projects/TEIID
+
+This example demonstrates:
+
+* using static and filesystem file resources
+* how to configure internal materialization(http://teiid.github.io/teiid-documents/master/content/caching/Materialized_Views.html[materialization]), so that caching can be used to improve query performance.
+* how to use Thorntail to configure translators, resource adapters and run teiid as a Thorntail uber jar.
+
+== Project `pom.xml`
+
+The project is a normal maven project with `vdb` packaging
+
+[source,xml]
+----
+<packaging>vdb</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.teiid</groupId>
+        <artifactId>vdb-maven-plugin</artifactId>
+        <version>1.1</version>
+		... see more in pom.xml file		
+      </plugin>	
+	</plugins>
+  </build>
+----
+
+This project also requires the `thorntail-maven-plugin` to build a uber jar with `-thorntail.jar` extension, for that add the following
+
+----
+<build>
+	<plugins>
+      <plugin>
+        <groupId>io.thorntail</groupId>
+        <artifactId>thorntail-maven-plugin</artifactId>
+        <version>${version.thorntail}</version>
+		... see more in pom.xml file	
+      </plugin>	
+	</plugins>
+</build>
+---- 
+
+To define the needed parts of Thorntail, a few dependencies(teiid, datasources, resource-adapters) are added.
+
+[source,xml]
+----
+<!-- This adds dependency on Teiid Fraction in Thorntail -->
+<dependency>
+  <groupId>io.thorntail</groupId>
+  <artifactId>teiid</artifactId>
+</dependency>
+
+<!-- This adds dependency for Teiid's file translator -->
+<dependency>
+  <groupId>io.thorntail</groupId>
+  <artifactId>teiid-file</artifactId>
+</dependency>
+----
+
+The example by default expects /tmp/teiidfiles to be populated with files similar to the ones in the link:/src/main/resources/data[data directory].  You may change that location in the project-defaults.yml.
+
+== Run
+
+To build the project
+
+[source,java]
+----
+mvn clean package
+----
+
+once build success, a `vdb-materialization-thorntail.jar` will generated under 'target' folder, run the example via
+
+[source,java]
+----
+java -jar vdb-materialization-thorntail.jar
+----
+
+By default, jdbc transport bind on `0.0.0.0` and port `31000`, system properties can be used eto bind a specific IP and Port, to bind a IP use `-Dswarm.bind.address=127.0.0.1`, to bind a port use `-Dswarm.teiid.jdbc.port=31000`.
+
+== Query Demonstrations
+
+link:../simpleclient/README.adoc#_execution[Simple Java Client] for sample SQL Queries, link:../simpleclient/SQuirreL.adoc[SQuirreL Client] for a fully featured SQL Queries.
+
+[source,sql]
+.*Example - Query the static materialized View*
+----
+mvn exec:java -Dvdb="Market" -Dsql="select * from MarketDataMat.StockPricesStatic"
+----
+
+[source,sql]
+.*Example - Query the internal materialized View*
+----
+mvn exec:java -Dvdb="Market" -Dsql="select * from MarketDataMat.StockPricesDir"
+----
+
+If you have not added files to the expected directory, that query will return an empty result.
+
+Once Thorntail is updated to a Teiid 10.3+, you can add files at runtime and the polling will determine when to refresh the materialization.  Otherwise you may perform a manual refresh as shown below. 
+
+[source,sql]
+.*Example - Perform a complete refresh*
+----
+mvn exec:java -Dvdb="Market" -Dsql="EXEC SYSADMIN.loadMatView('MarketDataMat', 'StockPricesDir')"
+----
