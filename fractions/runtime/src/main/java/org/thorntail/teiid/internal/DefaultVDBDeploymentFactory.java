@@ -21,12 +21,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.enterprise.context.ApplicationScoped;
 
 import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.Configuration;
+import org.jboss.shrinkwrap.api.ConfigurationBuilder;
+import org.jboss.shrinkwrap.api.Domain;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.FileAsset;
+import org.jboss.shrinkwrap.impl.base.ServiceExtensionLoader;
 import org.thorntail.teiid.VDBArchive;
 import org.wildfly.swarm.internal.FileSystemLayout;
 import org.wildfly.swarm.spi.api.DefaultDeploymentFactory;
@@ -38,22 +44,22 @@ public class DefaultVDBDeploymentFactory extends DefaultDeploymentFactory {
 
     public static VDBArchive archiveFromCurrentApp() throws Exception {
 
-//        Configuration config = ShrinkWrap.getDefaultDomain().getConfiguration();
-//
-//        ArrayList<ClassLoader> existing = new ArrayList<>();
-//        Iterator<ClassLoader> it = config.getClassLoaders().iterator();
-//        while (it.hasNext()) {
-//            existing.add(it.next());
-//        }
-//        existing.add(VDBArchive.class.getClassLoader());
-//        ConfigurationBuilder builder = new ConfigurationBuilder();
-//        builder.classLoaders(existing);
-//        builder.extensionLoader(new ServiceExtensionLoader(existing));
-//
-//        Domain domain = ShrinkWrap.createDomain(builder);
-//        final VDBArchive archive = domain.getArchiveFactory().create(VDBArchive.class, determineName());
+        Configuration config = ShrinkWrap.getDefaultDomain().getConfiguration();
 
-        final VDBArchive archive = ShrinkWrap.create(VDBArchive.class, determineName());
+        ArrayList<ClassLoader> existing = new ArrayList<>();
+        Iterator<ClassLoader> it = config.getClassLoaders().iterator();
+        while (it.hasNext()) {
+            existing.add(it.next());
+        }
+        existing.add(VDBArchive.class.getClassLoader());
+        ConfigurationBuilder builder = new ConfigurationBuilder();
+        builder.classLoaders(existing);
+        builder.extensionLoader(new ServiceExtensionLoader(existing));
+
+        Domain domain = ShrinkWrap.createDomain(builder);
+        final VDBArchive archive = domain.getArchiveFactory().create(VDBArchive.class, determineName());
+
+        //final VDBArchive archive = ShrinkWrap.create(VDBArchive.class, determineName());
         final DefaultDeploymentFactory factory = new DefaultVDBDeploymentFactory();
         factory.setup(archive);
         archive.addAllDependencies();

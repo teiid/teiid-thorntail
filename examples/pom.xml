@@ -5,14 +5,13 @@
 
 	<parent>
 		<groupId>org.teiid</groupId>
-		<artifactId>thorntail-teiid-parent</artifactId>
+		<artifactId>thorntail-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	
 	<name>Teiid Thorntail Examples</name>
 	<description>Data Virtualization based on Teiid Thorntail Examples</description>
-	<groupId>org.teiid</groupId>
 	<artifactId>thorntail-examples</artifactId>
 	<packaging>pom</packaging>
 

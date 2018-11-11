@@ -37,7 +37,6 @@
       <artifactId>feature-pack-swagger</artifactId>
       <scope>provided</scope>
       <type>zip</type>
-      <version>${version.teiid}</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>
