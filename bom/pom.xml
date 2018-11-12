@@ -124,7 +124,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.teiid</groupId>
-				<artifactId>thorntail-teiid-runtime</artifactId>
+				<artifactId>thorntail-runtime</artifactId>
 				<version>${throntail-teiid-version}</version>
 			</dependency>
 
@@ -189,7 +189,7 @@
 			
 			<dependency>
 				<groupId>org.teiid</groupId>
-				<artifactId>throntail-odata-api</artifactId>
+				<artifactId>thorntail-odata-api</artifactId>
 				<version>${throntail-teiid-version}</version>
 			</dependency>			
 		</dependencies>

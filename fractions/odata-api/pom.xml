@@ -6,7 +6,7 @@
     <artifactId>thorntail-fractions</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>throntail-odata-api</artifactId>
+  <artifactId>thorntail-odata-api</artifactId>
   <name>Teiid OData</name>
   <description>Exposes OData REST interface on configured source</description>
 
@@ -18,6 +18,10 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.teiid</groupId>
+      <artifactId>thorntail-config-api</artifactId>
+    </dependency>
     <dependency>
       <groupId>io.thorntail</groupId>
       <artifactId>container</artifactId>
