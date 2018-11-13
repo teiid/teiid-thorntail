@@ -9,7 +9,6 @@
     <relativePath>../</relativePath>
   </parent>
   
-  <groupId>org.teiid.thorntail.examples</groupId>
   <artifactId>vdb-materialization</artifactId>
   <name>Thorntail Based Teiid Example showing file source materialization</name>
   <packaging>vdb</packaging>

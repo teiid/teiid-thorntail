@@ -10,7 +10,6 @@
     <relativePath>../</relativePath>
   </parent>
   
-  <groupId>org.teiid.thorntail.examples</groupId>
   <artifactId>webservice-as-datasource</artifactId>
   <name>Thorntail Based Teiid Example showing webservice usage</name>
   <packaging>vdb</packaging>

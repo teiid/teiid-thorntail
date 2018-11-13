@@ -10,7 +10,6 @@
     <relativePath>../</relativePath>
   </parent>
     
-	<groupId>org.teiid.thorntail.examples</groupId>
 	<artifactId>rdbms-as-datasource</artifactId>
 	<name>Teiid Example showing RDBMS as data source</name>
 	<packaging>vdb</packaging>
