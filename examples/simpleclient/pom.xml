@@ -9,7 +9,6 @@
     <relativePath>../</relativePath>
   </parent>
     
-  <groupId>org.teiid.thorntail.examples</groupId>
   <artifactId>simpleclient</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>SimpleClient</name>

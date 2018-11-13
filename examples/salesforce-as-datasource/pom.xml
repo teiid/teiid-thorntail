@@ -10,7 +10,6 @@
     <relativePath>../</relativePath>
   </parent>
   
-  <groupId>org.teiid.thorntail.examples</groupId>
   <artifactId>salesforce-as-datasource</artifactId>
   <name>Thorntail Based Teiid Example showing SalesForce as data source</name>
   <packaging>vdb</packaging>

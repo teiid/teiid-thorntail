@@ -326,16 +326,29 @@
     </pluginRepository>
   </pluginRepositories>
 
-  <modules>
-    <module>config-api</module>
-    <module>fractions</module>
-    <module>bom</module>
-    <module>examples</module>
-  </modules>
 
   <profiles>
     <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+        <module>config-api</module>
+        <module>fractions</module>
+        <module>bom</module>
+        <module>examples</module>
+      </modules>
+    </profile>
+
+    <profile>
       <id>release</id>
+      <modules>
+        <module>config-api</module>
+        <module>fractions</module>
+        <module>bom</module>
+      </modules>
+
       <build>
         <plugins>
           <plugin>
