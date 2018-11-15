@@ -142,23 +142,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <forkCount>1</forkCount>
-          <reuseForks>false</reuseForks>
-          <runOrder>alphabetical</runOrder>
-          <failIfNoTests>false</failIfNoTests>
-          <excludedGroups>${testCategory.excluded}</excludedGroups>
-          <systemPropertyVariables>
-            <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
-            <thorntail.bind.address>127.0.0.1</thorntail.bind.address>
-            <project.version>${project.version}</project.version>
-            <org.apache.maven.user-settings>${session.request.userSettingsFile.path}</org.apache.maven.user-settings>
-          </systemPropertyVariables>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
         <executions>
@@ -342,11 +325,6 @@
 
     <profile>
       <id>release</id>
-      <modules>
-        <module>config-api</module>
-        <module>fractions</module>
-        <module>bom</module>
-      </modules>
 
       <build>
         <plugins>
