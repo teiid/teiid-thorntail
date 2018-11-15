@@ -5,7 +5,7 @@
     "user": "admin",
     "pass": "passWord123"
   },
-  "module": "org.wildfly.swarm.configuration.teiid",
+  "module": "org.teiid.thorntail.configuration.teiid",
   "generatorTargets": [
       "/subsystem=teiid"
   ]

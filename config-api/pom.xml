@@ -26,6 +26,7 @@
       <groupId>org.wildfly.core</groupId>
       <artifactId>wildfly-controller</artifactId>
       <version>${version.org.wildfly.core}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
