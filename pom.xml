@@ -137,6 +137,14 @@
   <build>
     <plugins>
       <plugin>
+	    <artifactId>maven-release-plugin</artifactId>
+	      <configuration>
+		    <!-- During release:perform, enable the "release" profile -->
+		    <releaseProfiles>release</releaseProfiles>
+		    <goals>deploy</goals>
+	      </configuration>
+        </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <configuration>
