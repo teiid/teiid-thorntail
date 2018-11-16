@@ -2,10 +2,15 @@ language: java
 sudo: false
 before_install:
 - cp .travis.settings.xml $HOME/.m2/settings.xml
+install: true
+script: mvn install -Dmaven.javadoc.skip=true -B -V -q -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dorg.slf4j.simpleLogger.log.org.wildfly.swarm.plugin.process.ProcessMojo=off
 deploy:
   provider: script
-  script: "mvn deploy -q -DskipTests=true"
+  script: "mvn -B -q -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dorg.slf4j.simpleLogger.log.org.wildfly.swarm.plugin.process.ProcessMojo=off -DskipTests=true deploy"
   skip_cleanup: true
+cache:
+  directories:
+  - $HOME/.m2  
 notifications:
   webhooks:
     urls:
