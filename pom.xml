@@ -12,7 +12,7 @@
 
   <groupId>org.teiid</groupId>
   <artifactId>thorntail-parent</artifactId>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>1.0.3-SNAPSHOT</version>
   <name>Teiid Thorntail Parent</name>
   <description>Teiid Thorntail Parent</description>
   <packaging>pom</packaging>
