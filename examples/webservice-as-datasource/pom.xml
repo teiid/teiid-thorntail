@@ -86,6 +86,10 @@
       <groupId>org.teiid</groupId>
       <artifactId>thorntail-odata-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>io.thorntail</groupId>
+      <artifactId>jaeger</artifactId>
+    </dependency>
   </dependencies>
 </project>
 

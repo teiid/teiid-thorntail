@@ -72,7 +72,7 @@
 
   <properties>
     <version.thorntail>2.2.0.Final</version.thorntail>
-    <version.teiid>11.2.0</version.teiid>
+    <version.teiid>11.2.1-SNAPSHOT</version.teiid>
     <version.org.wildfly.core>3.0.8.Final</version.org.wildfly.core>
     <version.wildfly>11.0.0.Final</version.wildfly>
     <version.thorntail.fraction.plugin>88</version.thorntail.fraction.plugin>
