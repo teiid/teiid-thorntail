@@ -6,7 +6,7 @@ install: true
 script: mvn install -Dmaven.javadoc.skip=true -B -V -q -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dorg.slf4j.simpleLogger.log.org.wildfly.swarm.plugin.process.ProcessMojo=off
 deploy:
   provider: script
-  script: "mvn -B -q -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dorg.slf4j.simpleLogger.log.org.wildfly.swarm.plugin.process.ProcessMojo=off -DskipTests=true deploy"
+  script: "mvn -B -q -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dorg.slf4j.simpleLogger.log.org.wildfly.swarm.plugin.process.ProcessMojo=off -DskipTests=true -P deploy deploy"
   skip_cleanup: true
   on: 
     tags: false 

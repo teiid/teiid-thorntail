@@ -342,6 +342,15 @@
         <module>examples</module>
       </modules>
     </profile>
+    
+    <profile>
+      <id>deploy</id>
+      <modules>
+        <module>config-api</module>
+        <module>fractions</module>
+        <module>bom</module>
+      </modules>
+    </profile>
 
     <profile>
       <id>release</id>
