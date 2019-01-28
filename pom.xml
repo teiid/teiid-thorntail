@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.thorntail</groupId>
     <artifactId>parent</artifactId>
-    <version>10</version>
+    <version>11</version>
   </parent>
 
   <groupId>org.teiid</groupId>
@@ -71,21 +71,20 @@
   </distributionManagement>
 
   <properties>
-    <version.thorntail>2.2.0.Final</version.thorntail>
-    <version.teiid>11.2.1-SNAPSHOT</version.teiid>
-    <version.org.wildfly.core>3.0.8.Final</version.org.wildfly.core>
-    <version.wildfly>11.0.0.Final</version.wildfly>
-    <version.thorntail.fraction.plugin>88</version.thorntail.fraction.plugin>
-    <config-api.version>1.4.0</config-api.version> <!-- look at any other config-api pom version -->
-    <version.org.wildfly.plugins.maven>1.0.2.Final</version.org.wildfly.plugins.maven>
+    <version.thorntail>2.3.0.Final</version.thorntail>
+    <version.teiid>12.1.0-SNAPSHOT</version.teiid>
+    <version.org.wildfly.core>7.0.0.Final</version.org.wildfly.core>
+    <version.wildfly>15.0.1.Final</version.wildfly>
+    <version.thorntail.fraction.plugin>93</version.thorntail.fraction.plugin>
+    <version.wildfly-config>1.6.1</version.wildfly-config>
+    <version.org.wildfly.plugins.maven>2.0.0.Final</version.org.wildfly.plugins.maven>
+    <version.exec-maven-plugin>1.4.0</version.exec-maven-plugin>
 
     <version.wildfly.swarm.checkstyle>3</version.wildfly.swarm.checkstyle>
     <version.certified-community>2.0.0.Final</version.certified-community>
     <version.wildfly.swarm>${project.version}</version.wildfly.swarm>
 
-    <version.org.arquillian>1.1.15.Final</version.org.arquillian>
-    <version.org.jboss.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap>
-    <version.org.jboss.shrinkwrap.descriptors>2.0.0</version.org.jboss.shrinkwrap.descriptors>
+    <version.org.arquillian>1.4.1.Final</version.org.arquillian>
     <version.fest-assert>1.4</version.fest-assert>
     <version.junit>4.12</version.junit>
     <version.mockito>2.2.28</version.mockito>

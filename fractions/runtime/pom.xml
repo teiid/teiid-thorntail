@@ -101,8 +101,8 @@
       <version>${version.teiid}</version>
     </dependency>
     <dependency>
-      <groupId>org.teiid</groupId>
-      <artifactId>teiid-jboss-admin</artifactId>
+      <groupId>org.teiid.wildfly</groupId>
+      <artifactId>teiid-wildfly-admin</artifactId>
       <scope>provided</scope>
       <version>${version.teiid}</version>
     </dependency>
@@ -145,7 +145,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.teiid</groupId>
+      <groupId>org.teiid.wildfly</groupId>
       <artifactId>teiid-wildfly-integration-feature-pack</artifactId>
       <type>zip</type>
       <scope>provided</scope>
@@ -158,7 +158,7 @@
     </dependency>
 
     <dependency>
-      <groupId>org.teiid</groupId>
+      <groupId>org.teiid.wildfly</groupId>
       <artifactId>teiid-client-feature-pack</artifactId>
       <type>zip</type>
       <scope>provided</scope>
@@ -171,7 +171,7 @@
     </dependency>
 
     <dependency>
-      <groupId>org.teiid</groupId>
+      <groupId>org.teiid.wildfly</groupId>
       <artifactId>rest-service-feature-pack</artifactId>
       <type>zip</type>
       <scope>provided</scope>
@@ -183,7 +183,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.teiid.connectors</groupId>
+      <groupId>org.teiid.wildfly.connectors</groupId>
       <artifactId>feature-pack-swagger</artifactId>
       <type>zip</type>
       <scope>provided</scope>

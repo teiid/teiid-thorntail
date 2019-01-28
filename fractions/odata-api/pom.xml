@@ -116,7 +116,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.teiid</groupId>
+      <groupId>org.teiid.wildfly</groupId>
       <artifactId>teiid-wildfly-integration-feature-pack</artifactId>
       <type>zip</type>
       <scope>provided</scope>
@@ -129,7 +129,7 @@
     </dependency>
 
     <dependency>
-      <groupId>org.teiid</groupId>
+      <groupId>org.teiid.wildfly</groupId>
       <artifactId>teiid-client-feature-pack</artifactId>
       <type>zip</type>
       <scope>provided</scope>
@@ -141,7 +141,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.teiid</groupId>
+      <groupId>org.teiid.wildfly</groupId>
       <artifactId>olingo-feature-pack</artifactId>
       <type>zip</type>
       <scope>provided</scope>
@@ -153,7 +153,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.teiid</groupId>
+      <groupId>org.teiid.wildfly</groupId>
       <artifactId>rest-service-feature-pack</artifactId>
       <type>zip</type>
       <scope>provided</scope>
@@ -165,7 +165,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.teiid.connectors</groupId>
+      <groupId>org.teiid.wildfly.connectors</groupId>
       <artifactId>feature-pack-swagger</artifactId>
       <type>zip</type>
       <scope>provided</scope>

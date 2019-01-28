@@ -20,7 +20,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.teiid.connectors</groupId>
+      <groupId>org.teiid.wildfly.connectors</groupId>
       <artifactId>feature-pack-ws</artifactId>
       <scope>provided</scope>
       <type>zip</type>
@@ -33,7 +33,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.teiid.connectors</groupId>
+      <groupId>org.teiid.wildfly.connectors</groupId>
       <artifactId>feature-pack-salesforce</artifactId>
       <scope>provided</scope>
       <type>zip</type>
@@ -51,7 +51,7 @@
       <version>${version.teiid}</version>
     </dependency>
     <dependency>
-      <groupId>org.teiid.connectors</groupId>
+      <groupId>org.teiid.wildfly.connectors</groupId>
       <artifactId>connector-salesforce</artifactId>
       <version>${version.teiid}</version>
     </dependency>
