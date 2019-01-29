@@ -72,11 +72,18 @@ To build the project
 mvn clean package
 ----
 
-once build success, a `vdb-materialization-thorntail.jar` will generated under 'target' folder, run the example via
+once build success, a `vdb-materialization-VERSION-thorntail.jar` will generated under 'target' folder, run the example via
 
 [source,java]
 ----
 java -jar vdb-materialization-thorntail.jar
+----
+
+or with maven:
+
+[source,java]
+----
+mvn exec:exec
 ----
 
 By default, jdbc transport bind on `0.0.0.0` and port `31000`, system properties can be used eto bind a specific IP and Port, to bind a IP use `-Dswarm.bind.address=127.0.0.1`, to bind a port use `-Dswarm.teiid.jdbc.port=31000`.
