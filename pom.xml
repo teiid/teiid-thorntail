@@ -78,6 +78,7 @@
     <version.thorntail.fraction.plugin>88</version.thorntail.fraction.plugin>
     <config-api.version>1.4.0</config-api.version> <!-- look at any other config-api pom version -->
     <version.org.wildfly.plugins.maven>1.0.2.Final</version.org.wildfly.plugins.maven>
+    <version.exec-maven-plugin>1.4.0</version.exec-maven-plugin>
 
     <version.wildfly.swarm.checkstyle>3</version.wildfly.swarm.checkstyle>
     <version.certified-community>2.0.0.Final</version.certified-community>
