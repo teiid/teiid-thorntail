@@ -71,6 +71,18 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>${version.exec-maven-plugin}</version>
+        <configuration>
+          <executable>java</executable>
+          <arguments>
+            <argument>-jar</argument>
+            <argument>target/${project.artifactId}-${project.version}-thorntail.jar</argument>
+          </arguments>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
