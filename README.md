@@ -20,7 +20,7 @@ To migrate from an older version of Teiid Thorntail which was using artifacts fr
 
 # Roadmap
 
-Teiid will follow the 2.x line of Thorntail, which is predominately based upon WildFly integration.  It is not yet known how much Thorntail 4.x will change this paradigm.  We may switch our focus entirely to [Teiid Spring Boot](https://github.com/teiid/teiid-spring-boot) if Thorntail 4.x requires significant changes.
+Teiid will follow the 2.x line of Thorntail, which is predominately based upon WildFly integration.  Thorntail 4.x will merge with the [quarkus](quarkus.io) efforts - but will be a large shift from the WildFly paradigm and so is not something that we will initially be able to follow.  With our Fuse allignment we will maintain [Teiid Spring Boot](https://github.com/teiid/teiid-spring-boot) in the interirm until it's clear how we'll leverage quarkus.
 
 # Releasing
 
