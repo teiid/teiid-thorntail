@@ -71,18 +71,17 @@
   </distributionManagement>
 
   <properties>
-    <version.thorntail>2.3.0.Final</version.thorntail>
-    <version.teiid>12.1.0</version.teiid>
+    <version.thorntail>2.4.0.Final</version.thorntail>
+    <version.teiid>12.2.0</version.teiid>
     <version.org.wildfly.core>7.0.0.Final</version.org.wildfly.core>
     <version.wildfly>15.0.1.Final</version.wildfly>
-    <version.thorntail.fraction.plugin>93</version.thorntail.fraction.plugin>
+    <version.thorntail.fraction.plugin>94</version.thorntail.fraction.plugin>
     <version.wildfly-config>1.6.1</version.wildfly-config>
     <version.org.wildfly.plugins.maven>2.0.0.Final</version.org.wildfly.plugins.maven>
     <version.exec-maven-plugin>1.4.0</version.exec-maven-plugin>
 
     <version.wildfly.swarm.checkstyle>3</version.wildfly.swarm.checkstyle>
     <version.certified-community>2.0.0.Final</version.certified-community>
-    <version.wildfly.swarm>${project.version}</version.wildfly.swarm>
 
     <version.org.arquillian>1.4.1.Final</version.org.arquillian>
     <version.fest-assert>1.4</version.fest-assert>
