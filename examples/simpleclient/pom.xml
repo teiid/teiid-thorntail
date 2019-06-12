@@ -4,12 +4,12 @@
   <parent>
     <groupId>org.teiid</groupId>
     <artifactId>thorntail-examples</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.1.0</version>
     <relativePath>../</relativePath>
   </parent>
     
   <artifactId>simpleclient</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>2.1.0</version>
   <name>SimpleClient</name>
   <description>The simpleclient demonstrates making connections to Teiid through both, a Driver and a DataSource</description>
 

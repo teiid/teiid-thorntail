@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.teiid</groupId>
     <artifactId>thorntail-examples</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.1.0</version>
     <relativePath>../</relativePath>
   </parent>
   
@@ -14,7 +14,7 @@
 
   <properties>
     <version.thorntail>2.2.0.Final</version.thorntail>
-    <version.thorntail.teiid>2.0.1-SNAPSHOT</version.thorntail.teiid>
+    <version.thorntail.teiid>2.1.0</version.thorntail.teiid>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
