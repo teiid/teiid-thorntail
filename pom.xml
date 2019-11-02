@@ -90,7 +90,7 @@
     
     <version.deploy.plugin>2.8.2</version.deploy.plugin>
 
-    <version.checkstyle>7.4</version.checkstyle>
+    <version.checkstyle>8.18</version.checkstyle>
 
     <maven.min.version>3.2.1</maven.min.version>
 
