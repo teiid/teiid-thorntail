@@ -16,7 +16,7 @@
 	<properties>
 		<version.thorntail>2.2.0.Final</version.thorntail>
 		<version.thorntail.teiid>2.1.1-SNAPSHOT</version.thorntail.teiid>
-		<mysql.version>5.1.6</mysql.version>
+		<mysql.version>8.0.28</mysql.version>
     </properties>
 	
 	<dependencyManagement>
